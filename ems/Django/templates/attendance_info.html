@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>出勤情况</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        th,td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="position: relative;">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/attendance_info">出勤情况</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav">
+
+                    <li><a href="/employee_info">员工信息管理</a></li>
+                    <li ><a href="/department_info">部门管理</a></li>
+                    <li ><a href="/salary_info">员工薪资</a></li>
+                    <li ><a href="/attendance_info">出勤情况</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                     <a href="/employee_info" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.session.username}}
+                        <span class="caret">
+                         <ul class="dropdown-menu">
+                                <li><a href="/employee_info">主页</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout">注销</a></li>
+                         </ul>
+                        </span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="main">
+        <div class="container">
+            <div style="margin-bottom: 10px;">
+
+                <a href="add/" class="btn btn-success">
+                添加记录
+                <span class="glyphicon glyphicon-plus"></span>
+                </a>
+
+               <a href="search/" class="btn btn-success">
+                查找记录
+                <span class="glyphicon glyphicon-search"></span>
+               </a>
+
+                <a href="delete/" class="btn btn-success">
+                删除记录
+                <span class="glyphicon glyphicon-minus"></span>
+                </a>
+
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    出勤列表
+                </div>
+                <table class="table table-bordered">
+                        <thead >
+                            <tr>
+                                <th>编号</th>
+                                <th>员工ID</th>
+                                <th>姓名</th>
+                                <th>日期</th>
+                                <th>状态</th>
+                                <th>工作时长</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for attendance in attendances %}
+                            <tr>
+                                <th scope="row">{{attendance.id}}</th>
+                                <td>{{attendance.employee_id}}</td>
+                                <td>{{attendance.name}}</td>
+                                <td>{{attendance.date}}</td>
+                                <td>{{attendance.attendance_status}}</td>
+                                <td>{{attendance.work_hours}} h</td>
+                                <td><a href="{% url 'attendance_edit' attendance.id %}" >编辑</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- 分页 -->
+    <div class="container">
+        <nav aria-label="...">
+            <ul class="pagination">
+            {{pages}}
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

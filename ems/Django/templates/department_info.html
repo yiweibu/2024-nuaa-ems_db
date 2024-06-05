@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门管理</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        th,td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body style="position: relative;">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/department_info">部门管理</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav">
+
+                    <li><a href="/employee_info">员工信息管理</a></li>
+                    <li ><a href="/department_info">部门管理</a></li>
+                    <li ><a href="/salary_info">员工薪资</a></li>
+                    <li ><a href="/attendance_info">出勤情况</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                     <a href="/employee_info" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.session.username}}
+                        <span class="caret">
+                         <ul class="dropdown-menu">
+                                <li><a href="/employee_info">主页</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout">注销</a></li>
+                         </ul>
+                        </span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="main">
+        <div class="container">
+            <div style="margin-bottom: 10px;">
+
+                <a href="add/" class="btn btn-success">
+                添加部门
+                <span class="glyphicon glyphicon-plus"></span>
+                </a>
+
+               <a href="search/" class="btn btn-success">
+                查找部门
+                <span class="glyphicon glyphicon-search"></span>
+               </a>
+
+                <a href="delete/" class="btn btn-success">
+                删除部门
+                <span class="glyphicon glyphicon-minus"></span>
+                </a>
+
+            </div>
+            <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    部门信息列表
+                </div>
+                <table class="table table-bordered">
+                        <thead >
+                            <tr>
+                                <th>ID</th>
+                                <th>部门</th>
+                                <th>部门管理员ID</th>
+                                <th>部门管理员</th>
+                                <th>部门描述</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for department in departments %}
+                            <tr>
+                                <th scope="row">{{department.id}}</th>
+                                <td>{{department.department_name}}</td>
+                                <td>{{department.manager_id}}</td>
+                                <td>{{department.manager_name}}</td>
+                                <td>{{department.description}}</td>
+                                <td><a href="{% url 'department_edit' department.id %}" >编辑</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- 分页 -->
+    <div class="container">
+        <nav aria-label="...">
+            <ul class="pagination">
+            {{pages}}
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
