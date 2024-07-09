@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete Employee</title>
+    <title>User Edit</title>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -16,16 +16,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 c1">
-            <h2 class="text-center">请选择要删除的员工ID</h2>
+            <h2 class="text-center">编辑信息</h2>
             {% if error %}
             <div class="alert alert-danger" role="alert">
                 <strong>error：</strong> {{ error }}
             </div>
             {% endif %}
             <form action="" method="post">
-                <p>ID:<input type="number" name="id" class="form-control"></p>
-                <input type="submit" value="删除" class="btn btn-success">
-                <a href="/employee_info" class="btn btn-success">回到员工管理</a>
+                <p>name:<input type="text" name="name" class="form-control"></p>
+                <label for="gender">性别：</label>
+                     <select id="gender" name="gender">
+                        <option value="M">男</option>
+                        <option value="F">女</option>
+                     </select>
+                <p>age:<input type="number" name="age" class="form-control"></p>
+                <p>phone:<input type="tel" name="phone" class="form-control"></p>
+                <input type="submit" value="编辑" class="btn btn-success">
+                <a href="{% url 'user_home' user.id %}" class="btn btn-success">回到信息列表</a>
             </form>
         </div>
     </div>

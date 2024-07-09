@@ -22,7 +22,7 @@ class EmployeeManager(BaseUserManager):
 
 # 雇员模型
 class Employee(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True, default='user@123.com')
+    email = models.EmailField(max_length=128, unique=True, default='user@123.com')
     password = models.CharField(max_length=128, default='123456')
     GENDER_CHOICES = (
         ('M', '男'),
@@ -33,7 +33,7 @@ class Employee(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True, verbose_name='性别')
     age = models.CharField(max_length=10, verbose_name='年龄', null=True, blank=True)
     position = models.CharField(max_length=100, null=True, blank=True, verbose_name='职位')
-    department_name = models.CharField(max_length=100, null=True, blank=True, unique=True, verbose_name='部门')
+    department_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='部门')
     total_salary = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='总薪资', blank=True, null=True)
     phone = models.CharField(max_length=11, null=True, blank=True, verbose_name='联系电话')
 
@@ -62,6 +62,7 @@ class Department(models.Model):
     manager_id = models.IntegerField(null=True, blank=True, verbose_name='部门管理员ID')
     manager_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='部门管理员')
     department_name = models.CharField(max_length=100, null=True, blank=True, unique=True, verbose_name='部门')
+    member_num = models.IntegerField(null=True, blank=True, verbose_name='部门人数')
     description = models.TextField(null=True, blank=True, verbose_name='部门描述')
 
     def __str__(self):

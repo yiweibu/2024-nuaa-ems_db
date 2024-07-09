@@ -37,10 +37,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                     <a href="/employee_info" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.session.username}}
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.session.username}}
                         <span class="caret">
                          <ul class="dropdown-menu">
-                                <li><a href="/employee_info">主页</a></li>
+                                <li><a href="/admin_home">主页</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/logout">注销</a></li>
                          </ul>
@@ -81,6 +81,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>部门</th>
+                                <th>部门人数</th>
                                 <th>部门管理员ID</th>
                                 <th>部门管理员</th>
                                 <th>部门描述</th>
@@ -92,6 +93,7 @@
                             <tr>
                                 <th scope="row">{{department.id}}</th>
                                 <td>{{department.department_name}}</td>
+                                <td>{{department.member_num}}</td>
                                 <td>{{department.manager_id}}</td>
                                 <td>{{department.manager_name}}</td>
                                 <td>{{department.description}}</td>

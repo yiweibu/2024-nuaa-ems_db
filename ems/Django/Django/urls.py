@@ -19,7 +19,7 @@ from ems import views
 urlpatterns = [
     #path("admin/", admin.site.urls),
     path("",views.index,name='index'),
-    path("login/",views.admin_login,name='login'),
+    path("login/",views.user_login,name='login'),
     path("logout/",views.user_logout,name='logout'),
     path("employee_info/",views.employee_info,name='employee_info'),
     path("employee_info/add/",views.employee_add,name='employee_add'),
@@ -44,5 +44,11 @@ urlpatterns = [
     path("attendance_info/<int:attendance_id>/edit/", views.attendance_edit, name='attendance_edit'),
     path("attendance_info/search/", views.attendance_search, name='attendance_search'),
     path("<int:attendance_employee_id>/attendance_info_list/", views.attendance_info_list, name='attendance_info_list'),
-    path("attendance_info/delete/",views.attendance_delete,name='attendance_delete')
+    path("attendance_info/delete/",views.attendance_delete,name='attendance_delete'),
+    path("admin_home/",views.admin_home,name='admin_home'),
+    path("admin_home/<int:user_id>/edit/", views.admin_edit, name='admin_edit'),
+    path("admin_home/<int:user_id>/change_admin_password/", views.change_admin_password, name='change_admin_password'),
+    path("user_home/<int:user_id>/",views.user_home,name='user_home'),
+    path("user_home/<int:user_id>/edit/", views.user_edit, name='user_edit'),
+    path("user_home/<int:user_id>/change_user_password/", views.change_user_password, name='change_user_password')
 ]

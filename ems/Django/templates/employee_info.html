@@ -41,7 +41,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.session.username}}
                     <span class="caret">
                         <ul class="dropdown-menu">
-                            <li><a href="#">主页</a></li>
+                            <li><a href="/admin_home">主页</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="/logout">注销</a></li>
                         </ul>
@@ -83,9 +83,10 @@
                                 <th>ID</th>
                                 <th>用户名</th>
                                 <th>姓名</th>
+                                <th>性别</th>
                                 <th>职位</th>
                                 <th>部门</th>
-                                <th>总薪水</th>
+                                <th>联系电话</th>
                                 <th>管理员</th>
                                 <th>操作</th>
                             </tr>
@@ -97,9 +98,10 @@
                                 <th scope="row">{{employee.id}}</th>
                                 <td>{{employee.email}}</td>
                                 <td>{{employee.name}}</td>
+                                <td>{% if employee.gender == 'M' %}男{% else %}女{% endif %}</td>
                                 <td>{{employee.position}}</td>
                                 <td>{{employee.department_name}}</td>
-                                <td>{{employee.total_salary}}</td>
+                                <td>{{employee.phone}}</td>
                                 {% if employee.is_admin %}
                                 <td>是</td>
                                 {% else %}
